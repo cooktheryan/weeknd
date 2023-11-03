@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: weeknd
+  namespace: my-go-app
+  labels:
+    app: weeknd
+    app.kubernetes.io/component: backstage
+    backstage.io/kubernetes-id: my-go-app
+spec:
+  rules:
+  - host: 
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: weeknd
+              port:
+                number: 8080

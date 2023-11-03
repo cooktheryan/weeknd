@@ -1,0 +1,28 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: weeknd
+  namespace: my-go-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weeknd
+  template:
+    metadata:
+      labels:
+        app: weeknd
+        app.kubernetes.io/component: backstage
+        backstage.io/kubernetes-id: my-go-app
+    spec:
+      containers:
+        - name: weeknd
+          image: image-registry.openshift-image-registry.svc:5000/my-go-app/weeknd:latest
+          ports:
+            - name: http-8080
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              memory: '128Mi'
+              cpu: '500m'

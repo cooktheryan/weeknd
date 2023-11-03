@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: weeknd
+  namespace: my-go-app
+  labels:
+    app: weeknd
+    app.kubernetes.io/component: backstage
+    backstage.io/kubernetes-id: my-go-app
+spec:
+  ports:
+    - name: http-8080
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: weeknd
